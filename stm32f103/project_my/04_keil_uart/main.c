@@ -1,4 +1,5 @@
 #include "uart.h"
+#include "print.h"
 
 static void delay(int d) {
 	while(d--);
@@ -8,10 +9,9 @@ static void delay(int d) {
 int main() {
 	uart_init();
 
-	uart_send('y');
-	uart_send('h');
-	uart_send('x');
-	uart_send('\n');
+	char* str = "haha";
+	println(str);
+	printlnHex("str address:",&str);
 	while(1) {
 		char c = 0;
 		uart_read(&c);
