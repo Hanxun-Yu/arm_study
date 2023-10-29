@@ -3,6 +3,7 @@
 
 
 
+
 int g_int_no_value;
 int g_int = 0;
 
@@ -35,21 +36,4 @@ int mymain() {
 	return 0;
 }
 
-void memcpy(u32* dest, u32* src, u32 len) {
-	
-	while(len--) {
-		*dest = *src;
-		dest++;
-		src++;
-	}
-}
-
-void memset(u32* head, u32 val, u32 len) {
-	//当此函数未实现时，即BSS段不清除，则输出的3个变量为随机值，没有被清0
-	//return; 
-	while(len--) {
-		*head = val;
-		head++;
-	}
-}
 

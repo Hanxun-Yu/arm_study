@@ -15,12 +15,12 @@ Reset_Handler	PROC
 				EXPORT	Reset_Handler 			[WEAK]
 				IMPORT mymain
 				
-				;使用memcpy进行重定位
+				;重定位 全局变量
 				;要使用以下3个变量，必须在keil中编译配置中linker标签下
 				;勾选Use Memory Layout from Target Dialog
-				IMPORT |Image$$RW_IRAM1$$Base| 	;加载地址
+				IMPORT |Image$$RW_IRAM1$$Base| 	;链接地址
 				IMPORT |Image$$RW_IRAM1$$Length|;长度
-				IMPORT |Load$$RW_IRAM1$$Base|	;链接地址
+				IMPORT |Load$$RW_IRAM1$$Base|	;加载地址
 				IMPORT memcpy	
 					
 					
@@ -33,6 +33,7 @@ Reset_Handler	PROC
 				
 				BL memcpy
 				
+				;清零BSS段
 				IMPORT |Image$$RW_IRAM1$$ZI$$Base| 	;bss head
 				IMPORT |Image$$RW_IRAM1$$ZI$$Length|;长度
 				IMPORT memset
@@ -42,7 +43,7 @@ Reset_Handler	PROC
 				LDR R2 ,=|Image$$RW_IRAM1$$ZI$$Length|		;bss length
 				BL memset
 				
-				
+				;代码段重定位
 				IMPORT |Image$$ER_IROM1$$Base| 	;链接地址
 				IMPORT |Load$$ER_IROM1$$Base|;加载地址
 				IMPORT |Image$$ER_IROM1$$Length|	;长度

@@ -17,9 +17,9 @@ Reset_Handler	PROC
 				;使用memcpy进行重定位
 				;要使用以下3个变量，必须在keil中编译配置中linker标签下
 				;勾选Use Memory Layout from Target Dialog
-				IMPORT |Image$$RW_IRAM1$$Base| 	;加载地址
+				IMPORT |Image$$RW_IRAM1$$Base| 	;链接地址
 				IMPORT |Image$$RW_IRAM1$$Length|;长度
-				IMPORT |Load$$RW_IRAM1$$Base|	;链接地址
+				IMPORT |Load$$RW_IRAM1$$Base|	;加载地址
 				IMPORT memcpy	
 					
 					
